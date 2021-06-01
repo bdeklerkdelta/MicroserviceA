@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MicroserviceA.Domain\MicroserviceA.Domain.csproj" />
+    <ProjectReference Include="..\MicroserviceA.Messaging.Send\MicroserviceA.Messaging.Send.csproj" />
+  </ItemGroup>
+
+</Project>
