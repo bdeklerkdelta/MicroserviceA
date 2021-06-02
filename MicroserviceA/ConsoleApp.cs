@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using MicroserviceA.Service.Command;
-using MicroserviceA.Domain;
 using Microsoft.Extensions.Hosting;
 using System.Threading;
 using System.Threading.Tasks;

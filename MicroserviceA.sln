@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceA", "MicroserviceA\MicroserviceA.csproj", "{8BC967BF-ABB0-45AA-A801-03AF04EB3A25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceA.Messaging.Send", "MicroserviceA.Messaging.Send\MicroserviceA.Messaging.Send.csproj", "{EAF79EE9-7741-44FD-A6F8-62DC1DB24576}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceA.Messaging.Send", "MicroserviceA.Messaging.Send\MicroserviceA.Messaging.Send.csproj", "{EAF79EE9-7741-44FD-A6F8-62DC1DB24576}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceA.Service", "MicroserviceA.Service\MicroserviceA.Service.csproj", "{0659D773-3699-473B-9E7B-88B991FAEE51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceA.Service", "MicroserviceA.Service\MicroserviceA.Service.csproj", "{0659D773-3699-473B-9E7B-88B991FAEE51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroserviceA.Domain", "MicroserviceA.Domain\MicroserviceA.Domain.csproj", "{37DF370D-8F2E-42A8-8276-A490B5633F9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroserviceA.Domain", "MicroserviceA.Domain\MicroserviceA.Domain.csproj", "{37DF370D-8F2E-42A8-8276-A490B5633F9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

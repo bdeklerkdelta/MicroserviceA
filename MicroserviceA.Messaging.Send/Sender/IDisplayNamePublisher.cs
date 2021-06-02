@@ -1,9 +1,8 @@
 ﻿using MicroserviceA.Domain;
-using System;
 
 namespace MicroserviceA.Messaging.Send
 {
-    public interface IDisplayNameSender
+    public interface IDisplayNamePublisher
     {
         void SendDisplayName(DisplayName name);
     }

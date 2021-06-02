@@ -1,8 +1,4 @@
-﻿using System;
-using RabbitMQ.Client;
-using System.Text;
-using Microsoft.Extensions.Configuration;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using MicroserviceA.Messaging.Send.Options;
 using System.Reflection;
@@ -11,6 +7,7 @@ using MicroserviceA.Service.Command;
 using MediatR;
 using MicroserviceA.Messaging.Send;
 using MicroserviceA.Messaging.Send.Sender;
+using MediatR.Extensions.FluentValidation.AspNetCore;
 
 namespace MicroserviceA
 {
@@ -39,11 +36,12 @@ namespace MicroserviceA
 
             })
             .ConfigureServices((_, services) =>
-                     services.AddTransient<IRequestHandler<DisplayNameCommand, Unit>, DisplayNameCommandHandler>()
-                             .AddTransient<IDisplayNameSender, DisplayNameSender>()
+                     services.AddScoped<IRequestHandler<DisplayNameCommand, Unit>, DisplayNameCommandHandler>()
+                             .AddScoped<IDisplayNamePublisher, DisplayNamePublisher>()
                              .Configure<RabbitMqOptions>(ConfigSection)
-                             .AddMediatR(Assembly.GetExecutingAssembly())
+                             .AddMediatR(typeof(DisplayNameCommandHandler).GetTypeInfo().Assembly)
                              .AddHostedService<ConsoleApp>()
+                             .AddFluentValidation(new[] { typeof(DisplayNameCommandHandler).GetTypeInfo().Assembly })
                              .AddOptions());
     }
 }

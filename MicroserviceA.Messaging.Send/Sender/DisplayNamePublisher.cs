@@ -3,24 +3,25 @@ using MicroserviceA.Messaging.Send.Options;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace MicroserviceA.Messaging.Send.Sender
 {
-    public class DisplayNameSender : IDisplayNameSender
+    public class DisplayNamePublisher : IDisplayNamePublisher
     {
         private readonly string _hostname;
         private readonly string _queueName;
+        private readonly string _exchangeName;
+        private readonly string _routingKey;
         private IConnection _connection;
 
-        public DisplayNameSender(IOptions<RabbitMqOptions> rabbitMqOptions)
+        public DisplayNamePublisher(IOptions<RabbitMqOptions> rabbitMqOptions)
         {
             _queueName = rabbitMqOptions.Value.QueueName;
             _hostname = rabbitMqOptions.Value.Hostname;
+            _exchangeName = rabbitMqOptions.Value.ExchangeName;
+            _routingKey = rabbitMqOptions.Value.RoutingKey;
 
             CreateConnection();
         }
@@ -30,7 +31,9 @@ namespace MicroserviceA.Messaging.Send.Sender
             {
                 using (var channel = _connection.CreateModel())
                 {
+                    channel.ExchangeDeclare(_exchangeName, ExchangeType.Direct);
                     channel.QueueDeclare(queue: _queueName, durable: false, exclusive: false, autoDelete: false, arguments: null);
+                    channel.QueueBind(_queueName, _exchangeName, _routingKey, null);
 
                     var json = JsonSerializer.Serialize(string.Format("Hello my name is, {0}", name.Name));
                     var body = Encoding.UTF8.GetBytes(json);
